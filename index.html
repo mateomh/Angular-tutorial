@@ -13,12 +13,17 @@
 </head>
 <body>
   <!-- 
-    ng-init => creates a variable to use as you want, usually default values
+    ng-init => creates a variable to store data you want, usually default values
    -->
-  <div ng-init="language='AngularJS'">
-    Your prefered language
-    <input type="text" ng-model="language">
-    {{ language }}
+  <div ng-init="myFavLan=[{name:'php', extension:'.php'},{name:'javascript', extension:'js'}]">
+    <!--
+      ng-repeat => is a way to do a fast loop trough an element without using js 
+    -->
+    <p ng-repeat="lang in myFavLan">
+      Name: {{lang.name}}
+      <br>
+      Extension: {{lang.extension}}
+    </p>
   </div>
 </body>
 </html>
