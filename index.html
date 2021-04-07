@@ -12,7 +12,12 @@
   <title>Document</title>
 </head>
 <body>
+  <!-- 
+    ng-init => creates a variable to use as you want, usually default values
+   -->
   <div ng-init="language='AngularJS'">
+    Your prefered language
+    <input type="text" ng-model="language">
     {{ language }}
   </div>
 </body>
