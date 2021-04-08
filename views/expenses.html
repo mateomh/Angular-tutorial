@@ -8,7 +8,7 @@
         <span class="float-start">{{expense.amount | currency:"USD":2}}</span>{{expense.description | uppercase}}
 
         <button type="button" class="btn btn-danger btn-s float-end btn-separation-left">Delete</button>        
-        <a href="" class="btn btn-primary btn-s float-end">Edit</a>
+        <a href="index.html#!/expenses/edit/{{expense.id}}" class="btn btn-primary btn-s float-end">Edit</a>
       </li>
     </ul>   
   </div>
