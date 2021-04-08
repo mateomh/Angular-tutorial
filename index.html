@@ -3,46 +3,21 @@
   ng => angular object from the script 
   ng-app => tells angular that this file is an angular application
 -->
-<html lang="en" ng-app="test-app"> 
+<html lang="en" ng-app="expensesApp"> 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="./app.js"></script>
   <title>Document</title>
 </head>
 <body>
-  <div ng-controller="languages">
-    Select Your Favourite Language:
-    <button ng-click="php()">PHP</button>
-    <button ng-click="js()">JavaScript</button>
-    <button ng-click="cpp()">C++</button>
-    <button ng-click="ruby()">Ruby</button>
-
-    <p>Your selected language is: <b>{{ favLang }}</b></p>
+  <div ng-controller="ExpensesViewController">
+    {{name}}
+    <h1>{{phrase}}</h1>
+    {{expense.description}} => {{expense.amount}}
+    <button ng-click="increaseAmount()">Increase Amount</button>
   </div>
-
-  <script>
-    const app = angular.module('test-app', []);
-    app.controller('languages', ['$scope', ($scope) => {
-      $scope.favLang = 'None';
-
-      $scope.php = () => {
-        $scope.favLang = 'PHP';
-      }
-
-      $scope.js = () => {
-        $scope.favLang = 'JavaScript';
-      }
-
-      $scope.cpp = () => {
-        $scope.favLang = 'C++';
-      }
-
-      $scope.ruby = () => {
-        $scope.favLang = 'Ruby';
-      }
-    }]);
-  </script>
 </body>
 </html>
