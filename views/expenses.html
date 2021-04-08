@@ -1,0 +1,15 @@
+<div class="row" ng-controller="ExpensesViewController">
+  <div class="col-xs-12">
+    <ul class="list-group">
+      <li
+        class="list-group-item text-center"
+        ng-repeat="expense in expenses"
+      >
+        <span class="float-start">{{expense.amount | currency:"USD":2}}</span>{{expense.description | uppercase}}
+
+        <button type="button" class="btn btn-danger btn-s float-end btn-separation-left">Delete</button>        
+        <a href="" class="btn btn-primary btn-s float-end">Edit</a>
+      </li>
+    </ul>   
+  </div>
+</div>
