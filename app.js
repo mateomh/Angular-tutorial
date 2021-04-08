@@ -1,5 +1,21 @@
 const app = angular.module('expensesApp',['ngRoute']);
 
+// Services => are a way to have shared information between controllers
+// Services are like global variables for your application but have to
+// be included in the controller. $scope is an angular service
+app.factory('Expenses', () => {
+  const service = {}
+
+  service.items = [
+    {id: 1, description: 'food',amount: 10},
+    {id: 2,description: 'clothes',amount: 20},
+    {id: 3,description: 'tickets',amount: 100},
+    {id: 4,description: 'gas',amount: 40}
+  ];
+
+  return service;
+})
+
 app.config(['$routeProvider', ($routeProvider) => {
   $routeProvider
   .when('/', {
@@ -24,15 +40,10 @@ app.controller('HomeViewController', ['$scope', ($scope) => {
   $scope.appTitle = "My Expense Tracker";
 }]);
 
-app.controller('ExpensesViewController',['$scope', ($scope) => {
+app.controller('ExpensesViewController',['$scope', 'Expenses', ($scope, Expenses) => {
   $scope.name = 'Mateo';
   
-  $scope.expenses = [
-    {description: 'food',amount: 10},
-    {description: 'clothes',amount: 20},
-    {description: 'tickets',amount: 100},
-    {description: 'gas',amount: 40}
-  ];
+  $scope.expenses = Expenses.items;
   
   $scope.phrase = 'the sky is blue';
   
