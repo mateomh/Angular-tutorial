@@ -1,3 +1,8 @@
+<div class="row">
+  <div class="col-xs-12 button-row">
+    <a href="#!/expenses/new" class="btn btn-success btn-lg btn-block"><span class="glyphicon glyphicon-plus"></span> New expense</a>
+  </div>
+</div>
 <div class="row" ng-controller="ExpensesViewController">
   <div class="col-xs-12">
     <ul class="list-group">
@@ -5,16 +10,7 @@
         class="list-group-item text-center"
         ng-repeat="expense in expenses"
       >
-        <span class="float-start">{{expense.amount | currency:"USD":2}}</span>{{expense.description | uppercase}}
-
-        <button
-          type="button"
-          class="btn btn-danger btn-s float-end btn-separation-left"
-          ng-click="delete(expense.id)"
-        >
-          Delete
-        </button>        
-        <a href="index.html#!/expenses/edit/{{expense.id}}" class="btn btn-primary btn-s float-end">Edit</a>
+        <expense-item></expense-item>
       </li>
     </ul>   
   </div>

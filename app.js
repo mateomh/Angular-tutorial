@@ -15,7 +15,7 @@ app.factory('Expenses', () => {
 
   service.saveNew = (item) => {
     const index = service.items.findIndex(element => element.id == item.id);
-    console.log(index);
+
     if (index !== -1) {
       // validItem = {...item};
       // validItem = {...validItem, ...item};
@@ -32,7 +32,7 @@ app.factory('Expenses', () => {
 
   service.removeItem = (id) => {
     const index = service.items.findIndex(element => element.id == id);
-    console.log(index);
+    
     if (index !== -1) {
       service.items.splice(index, 1);
     }
@@ -75,7 +75,6 @@ app.controller('ExpensesViewController',['$scope', 'Expenses', ($scope, Expenses
   $scope.phrase = 'the sky is blue';
 
   $scope.delete = (id) => {
-    console.log(id);
     Expenses.removeItem(id);
   }
 }]);
@@ -98,7 +97,13 @@ app.controller(
       // }
       $location.path('/');
     }
-
-    
   }
+
 ]);
+
+app.directive('expenseItem', () => {
+  return {
+    restrict: 'E',
+    templateUrl: './views/expense-item.html'
+  }
+});

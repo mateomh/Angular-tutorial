@@ -1,0 +1,9 @@
+<span class="float-start">{{expense.amount | currency:"USD":2}}</span>{{expense.description | uppercase}}
+<button
+  type="button"
+  class="btn btn-danger btn-s float-end btn-separation-left"
+  ng-click="delete(expense.id)"
+>
+  Delete
+</button>
+<a href="#!/expenses/edit/{{expense.id}}" class="btn btn-primary btn-s float-end">Edit</a>
