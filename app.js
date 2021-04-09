@@ -30,6 +30,16 @@ app.factory('Expenses', () => {
     }
   }
 
+  service.removeItem = (id) => {
+    const index = service.items.findIndex(element => element.id == id);
+    console.log(index);
+    if (index !== -1) {
+      service.items.splice(index, 1);
+    }
+  }
+
+
+
   return service;
 })
 
@@ -63,9 +73,10 @@ app.controller('ExpensesViewController',['$scope', 'Expenses', ($scope, Expenses
   $scope.expenses = Expenses.items;
   
   $scope.phrase = 'the sky is blue';
-  
-  $scope.increaseAmount = () => {
-    $scope.expense.amount++;
+
+  $scope.delete = (id) => {
+    console.log(id);
+    Expenses.removeItem(id);
   }
 }]);
 
@@ -87,5 +98,7 @@ app.controller(
       // }
       $location.path('/');
     }
+
+    
   }
 ]);
