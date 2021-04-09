@@ -7,20 +7,28 @@ app.factory('Expenses', () => {
   const service = {}
 
   service.items = [
-    {id: 1, description: 'food',amount: 10},
-    {id: 2,description: 'clothes',amount: 20},
-    {id: 3,description: 'tickets',amount: 100},
-    {id: 4,description: 'gas',amount: 40}
+    {id: 1, description: 'food', amount: 10},
+    {id: 2, description: 'clothes', amount: 20},
+    {id: 3, description: 'tickets', amount: 100},
+    {id: 4, description: 'gas', amount: 40}
   ];
 
   service.saveNew = (item) => {
-    service.items.push(item);
+    const index = service.items.findIndex(element => element.id == item.id);
+    console.log(index);
+    if (index !== -1) {
+      // validItem = {...item};
+      // validItem = {...validItem, ...item};
+      // console.log(service.items[1]);
+      service.items[index] = {...service.items[index], ...item};
+      // service.items[1].description = item.description;
+      // service.items[1].amount = item.amount;
+      console.log(service.items[1]);
+    } else {
+      service.items.push(item);
+      service.items[-1]
+    }
   }
-
-  // service.updateItem = (item) => {
-  //   // service.items[item.id] = item;
-  //   // console.log(item);
-  // }
 
   return service;
 })
@@ -66,17 +74,17 @@ app.controller(
   ['$scope', '$routeParams', 'Expenses', '$location', 
   ($scope, $routeParams, Expenses, $location) =>
   {
-    $scope.expense = { id: 7, description: 'movies', amount: 30};
+    $scope.expense = { id: 5, description: 'movies', amount: 30};
     
     if($routeParams.id != undefined)
     {
-      $scope.expense = Expenses.items[$routeParams.id - 1];
+      $scope.expense = {...Expenses.items[$routeParams.id - 1]};
     }
     
     $scope.save = () => {
-      if($routeParams.id == undefined) {
-        Expenses.saveNew($scope.expense);
-      }
+      // if($routeParams.id == undefined) {
+      Expenses.saveNew($scope.expense);
+      // }
       $location.path('/');
     }
   }
